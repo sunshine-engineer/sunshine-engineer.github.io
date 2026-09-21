@@ -48,11 +48,11 @@ test('published routes, metadata, images and mobile layout', async ({
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      /https:\/\/sunshine-engineer.github.io\/portfolio\//,
+      /https:\/\/sunshine-engineer.github.io\//,
     );
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
       'content',
-      /\/portfolio\/social-card.png$/,
+      /\/social-card.png$/,
     );
     expect(
       await page.evaluate(
@@ -117,7 +117,7 @@ test('drafts absent from output and feeds retain base path', async ({
     const response = await request.get(path);
     expect(response.ok()).toBeTruthy();
     expect(await response.text()).toContain(
-      'https://sunshine-engineer.github.io/portfolio/articles/evidence-before-confidence/',
+      'https://sunshine-engineer.github.io/articles/evidence-before-confidence/',
     );
   }
 });
@@ -147,5 +147,5 @@ test('video loads on activation, with an external fallback', async ({
   await expect.poll(() => embeds).toBe(1);
   await expect(
     page.getByRole('link', { name: /Related project/ }),
-  ).toHaveAttribute('href', '/portfolio/projects/agentic-demo/');
+  ).toHaveAttribute('href', '/projects/agentic-demo/');
 });

@@ -28,8 +28,8 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed in the terminal, including `/portfolio/`.
-The usual address is [http://localhost:4321/portfolio/](http://localhost:4321/portfolio/).
+Open the local address printed in the terminal, at the root path.
+The usual address is [http://localhost:4321/](http://localhost:4321/).
 Saving a source file updates the development site automatically.
 
 To inspect the production output:
@@ -64,7 +64,7 @@ Content files have two parts: YAML metadata between the opening `---` lines
 in Notepad++, VS Code, or another text editor. Save as UTF-8.
 
 Use lowercase, hyphenated filenames without spaces. A file such as
-`src/content/articles/my-rag-notes.md` becomes `/portfolio/articles/my-rag-notes/`.
+`src/content/articles/my-rag-notes.md` becomes `/articles/my-rag-notes/`.
 Use `.md` for ordinary writing; use `.mdx` when embedding Astro components.
 
 ### Drafts and dates
@@ -118,7 +118,7 @@ Use `.md` for ordinary writing; use `.mdx` when embedding Astro components.
    headings automatically. The page already renders the title, so avoid a second
    `#` title in the body.
 4. Temporarily set `draft: false` and preview
-   `/portfolio/articles/my-rag-notes/` locally.
+   `/articles/my-rag-notes/` locally.
 5. Follow [validation and deployment](#validate-and-deploy) when ready to publish.
 
 Required article fields are `title`, `summary`, and `published`. Optional fields
@@ -151,7 +151,7 @@ keep the original `published` date and add `updated: 2026-09-22` with the actual
 
 3. Complete the template's sections: problem, architecture, your contribution,
    technical decisions, validation, and limitations/next steps.
-4. Set `draft: false` for local preview at `/portfolio/projects/my-project/`.
+4. Set `draft: false` for local preview at `/projects/my-project/`.
 
 Project-specific fields:
 
@@ -203,7 +203,7 @@ Include actual evidence for metrics, deployment claims, and test results.
    Do not paste the complete URL into this field.
 5. Write a summary and optional timestamps below the metadata. Add a local
    thumbnail with `cover: images/my-walkthrough.webp` if available.
-6. Change `draft` to `false`, open `/portfolio/videos/my-walkthrough/`, and check
+6. Change `draft` to `false`, open `/videos/my-walkthrough/`, and check
    both the play button and the direct YouTube link.
 
 Published videos require a YouTube ID. `project` and `article` reference existing
@@ -251,9 +251,9 @@ Put small, optimized images in `public/images/`. A cover field is relative to
 In an ordinary Markdown body, use the configured site base path:
 
 ````markdown
-![Architecture showing ingestion and retrieval](/portfolio/images/my-diagram.svg)
+![Architecture showing ingestion and retrieval](/images/my-diagram.svg)
 
-[Read the agent case study](/portfolio/projects/agentic-demo/)
+[Read the agent case study](/projects/agentic-demo/)
 
 [View the source](https://github.com/sunshine-engineer/AgenticAI_Demo)
 
@@ -263,8 +263,7 @@ print("Syntax highlighting is selected by the code-fence language")
 ````
 
 Replace example image paths with actual files. Use descriptive image alt text.
-Root-relative Markdown links beginning `/portfolio/` must be updated if the site's
-base path changes. A plain relative link resolves from the rendered page URL,
+Root-relative Markdown links beginning `/` resolve from the site root. A plain relative link resolves from the rendered page URL,
 not from the source-file folder.
 
 Inside `.astro` or `.mdx` components, use the `href()` helper from `src/config.ts`
@@ -329,8 +328,7 @@ tests for pull requests and pushes to `main`.
 
 ### Publish or update the live site
 
-Deployment is **manual only**. Saving files or pushing a commit does not update
-the live site automatically.
+Deployment runs automatically after a validated push to `main`. You can also run it manually from GitHub Actions.
 
 1. Review your changes and confirm which entries have `draft: false`.
 2. Commit the intended source changes and push them through your normal review
@@ -341,9 +339,10 @@ the live site automatically.
 4. In **Actions → Deploy to GitHub Pages → Run workflow**, choose `main`.
 5. Wait for both validation and deployment to succeed.
 6. Verify the homepage, changed pages, images, résumé if configured, and feeds at
-   [the portfolio URL](https://sunshine-engineer.github.io/portfolio/).
+   [the portfolio URL](https://sunshine-engineer.github.io/).
 
-Use this same manual workflow for subsequent content updates. Failed validation
+Use the manual workflow when you need to redeploy without a new commit.
+Failed validation
 blocks deployment. To roll back, restore the last known-good source through your
 Git workflow and deploy again.
 
@@ -355,13 +354,13 @@ expectations, configure Pages/DNS, and verify the result before publishing.
 
 | Symptom                                       | What to check                                                                                                                                            |
 | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| New content is missing or its URL returns 404 | Set `draft: false` for preview, check the filename-derived URL, and include `/portfolio/`.                                                               |
+| New content is missing or its URL returns 404 | Set `draft: false` for preview, check the filename-derived URL, and use the root URL.                                                                    |
 | Edits do not appear in production preview     | Run `npm run build` again and refresh the browser.                                                                                                       |
 | Live website still shows old content          | Push the reviewed change, then manually run the deployment workflow.                                                                                     |
 | Build reports a schema/frontmatter error      | Check YAML indentation, required fields, exact status values, date formats, and full URLs. Quote titles containing a colon.                              |
 | A video fails validation                      | Supply the actual eleven-character YouTube ID before setting `draft: false`.                                                                             |
 | YouTube player cannot play                    | Confirm the recording is available and embedding is allowed; try the direct YouTube link.                                                                |
-| Image is broken                               | Verify spelling and case, ensure the file exists, and check the `/portfolio/` base path. Hosting is case-sensitive.                                      |
+| Image is broken                               | Verify spelling and case, ensure the file exists, and check the root asset path. Hosting is case-sensitive.                                              |
 | Related content link is absent                | Check that the referenced filename exists and the target has `draft: false`.                                                                             |
 | Project is absent from the homepage           | Give the published project a positive `featuredOrder`.                                                                                                   |
 | Résumé link is absent                         | Add the real PDF and configure `profile.resume`.                                                                                                         |
