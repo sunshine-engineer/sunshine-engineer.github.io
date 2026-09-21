@@ -1,0 +1,35 @@
+---
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+
+<div class="video-player" data-video-id={id} data-video-title={title}>
+  <button class="video-trigger" aria-label={`Play ${title}`}>
+    <span class="play-icon" aria-hidden="true">
+      ▶
+    </span>
+    <span>Watch the walkthrough</span>
+    <small>YouTube loads when you press play</small>
+  </button>
+</div>
+<p>
+  <a href={`https://www.youtube.com/watch?v=${id}`}>Watch on YouTube ↗</a>
+</p>
+<script>
+  document.querySelectorAll<HTMLElement>('.video-player').forEach((player) => {
+    player.querySelector('button')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${player.dataset.videoId}?autoplay=1`;
+      iframe.title = player.dataset.videoTitle || 'Video walkthrough';
+      iframe.allow =
+        'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      player.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>

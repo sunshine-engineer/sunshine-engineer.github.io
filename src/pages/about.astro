@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile, href } from '../config';
+---
+
+<Base title="About & contact">
+  <section class="page-intro wrap">
+    <p class="eyebrow">THE PERSON BEHIND THE PROJECTS</p>
+    <h1>
+      Hi, I’m Sunny.
+      <br />
+      <em>Always building.</em>
+    </h1>
+    <p>{profile.description}</p>
+  </section>
+  <section class="about-grid wrap section">
+    <div class="prose">
+      <h2>A foundation in real systems</h2>
+      <p>
+        My professional background is in production data engineering: Python,
+        SQL, Airflow, data pipelines, validation, monitoring, and
+        troubleshooting.
+      </p>
+      <p>
+        I’m bringing that engineering discipline into applied generative AI
+        through independent projects. This portfolio captures what I’m building,
+        the tradeoffs I’m making, and the questions I’m still working through.
+      </p>
+      <h2>How I approach the work</h2>
+      <p>
+        Start with a specific problem. Keep system boundaries clear. Test what
+        can be tested deterministically, and separate that evidence from model
+        behavior. Document the limitations alongside the implementation.
+      </p>
+      <p>
+        The GenAI work here represents independent portfolio development, rather
+        than commercial production GenAI experience.
+      </p>
+    </div>
+    <aside class="about-aside">
+      <p class="eyebrow">MY TOOLBOX</p>
+      <h3>Production foundations</h3>
+      <p>
+        Python · SQL · Airflow
+        <br />
+        ETL · Validation · Monitoring
+      </p>
+      <h3>Independent explorations</h3>
+      <p>
+        RAG · Tool-calling agents
+        <br />
+        Retrieval · Evaluation · Documentation
+      </p>
+    </aside>
+  </section>
+  <section class="contact-band wrap" id="contact">
+    <div>
+      <p class="eyebrow">LET’S CONNECT</p>
+      <h2>
+        Talk projects.
+        <br />
+        Explore possibilities.
+      </h2>
+      <p>Find my work and professional links below.</p>
+    </div>
+    <div class="contact-links">
+      <a class="button" href={profile.github}>
+        Find me on GitHub ↗
+      </a>
+      {profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}
+      {profile.linkedin && <a href={profile.linkedin}>LinkedIn ↗</a>}
+      {profile.resume && (
+        <a href={href(profile.resume)} download>
+          Download résumé ↓
+        </a>
+      )}
+    </div>
+  </section>
+</Base>

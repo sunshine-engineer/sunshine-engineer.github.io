@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { href } from '../config';
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index?: number;
+}
+const { project, index = 0 } = Astro.props;
+---
+
+<article class="project-card">
+  <a
+    class="project-art"
+    href={href(`projects/${project.id}/`)}
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    {project.data.cover ? (
+      <img
+        src={href(project.data.cover)}
+        alt=""
+        loading="lazy"
+        width="800"
+        height="440"
+      />
+    ) : (
+      <div class="pipeline">
+        <span>INPUT</span>
+        <i>→</i>
+        <span>PROCESS</span>
+        <i>→</i>
+        <span>OUTPUT</span>
+      </div>
+    )}
+    <span class="art-label">
+      BUILD {String(index + 1).padStart(2, '0')} / INDEPENDENT PROJECT
+    </span>
+  </a>
+  <div class="card-body">
+    <div class="eyebrow">{project.data.status}</div>
+    <h3>
+      <a href={href(`projects/${project.id}/`)}>
+        {project.data.title}
+        <span aria-hidden="true">↗</span>
+      </a>
+    </h3>
+    <p>{project.data.summary}</p>
+    <ul class="tags">
+      {project.data.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  </div>
+</article>

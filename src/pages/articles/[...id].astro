@@ -1,0 +1,59 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { published, dateLabel } from '../../lib/content';
+import { href } from '../../config';
+export async function getStaticPaths() {
+  return (await published('articles')).map((article) => ({
+    params: { id: article.id },
+    props: { article },
+  }));
+}
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+---
+
+<Base title={article.data.title} description={article.data.summary}>
+  <header class="detail-header wrap">
+    <a class="eyebrow" href={href('articles/')}>
+      ← ALL ARTICLES
+    </a>
+    <p class="eyebrow" style="margin-top:25px">
+      {dateLabel(article.data.published)}
+      {article.data.updated && ` · Updated ${dateLabel(article.data.updated)}`}
+    </p>
+    <h1>{article.data.title}</h1>
+    <p class="summary">{article.data.summary}</p>
+    <ul class="tags">
+      {article.data.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  </header>
+  <div class="detail-layout wrap">
+    <article class="prose">
+      {article.data.cover && (
+        <img
+          class="detail-cover"
+          src={href(article.data.cover)}
+          alt=""
+          width="800"
+          height="440"
+        />
+      )}
+      <Content />
+    </article>
+    <aside class="toc">
+      <p class="eyebrow">ON THIS PAGE</p>
+      <ol>
+        {headings
+          .filter((h) => h.depth === 2)
+          .map((h) => (
+            <li>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+      </ol>
+    </aside>
+  </div>
+</Base>

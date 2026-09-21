@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import { published, dateLabel } from '../../lib/content';
+import { href } from '../../config';
+const videos = (await published('videos')).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+---
+
+<Base title="Videos">
+  <section class="page-intro wrap">
+    <p class="eyebrow">SHOW, THEN EXPLAIN</p>
+    <h1>
+      A closer look
+      <br />
+      at the build.
+    </h1>
+    <p>
+      Project walkthroughs that connect the code to the decisions behind it.
+    </p>
+  </section>
+  <section class="wrap section">
+    {videos.length ? (
+      <div class="project-grid">
+        {videos.map((video) => (
+          <article class="project-card">
+            <a
+              class="project-art video-card-art"
+              href={href(`videos/${video.id}/`)}
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              {video.data.cover ? (
+                <img
+                  src={href(video.data.cover)}
+                  alt=""
+                  width="800"
+                  height="440"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="play-icon">▶</span>
+              )}
+            </a>
+            <div class="card-body">
+              <p class="eyebrow">{dateLabel(video.data.published)}</p>
+              <h2>
+                <a href={href(`videos/${video.id}/`)}>{video.data.title} ↗</a>
+              </h2>
+              <p>{video.data.summary}</p>
+              <ul class="tags">
+                {video.data.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <span class="eyebrow">RECORDING IS THE NEXT STEP</span>
+        <h2>Walkthroughs are on the way.</h2>
+        <p>
+          In the meantime, explore the written case studies for architecture,
+          implementation choices, and limitations.
+        </p>
+        <a class="text-link" href={href('projects/')}>
+          Read the project case studies →
+        </a>
+      </div>
+    )}
+  </section>
+</Base>

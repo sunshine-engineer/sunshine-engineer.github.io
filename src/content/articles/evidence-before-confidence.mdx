@@ -1,0 +1,64 @@
+---
+title: What does a passing AI demo actually prove?
+summary: Separate deterministic checks, model evaluation, and operating evidence before calling a system reliable.
+tags: [Evaluation, Engineering practice, Applied AI]
+draft: false
+published: 2026-09-21
+---
+
+A demo is useful evidence. It shows that one path worked under particular conditions. The engineering mistake is allowing that observation to stand in for every other question about the system.
+
+When documenting an AI project, I find it useful to separate three kinds of evidence.
+
+## 1. Deterministic behavior
+
+Some behavior belongs to ordinary application code: validating tool arguments, refusing an unapproved write, limiting loop iterations, or preserving a source identifier. These behaviors can be tested without relying on a live model.
+
+For a hypothetical tool router, the check might look like this:
+
+```python
+def test_write_requires_approval():
+    result = dispatch_tool(
+        name="create_ticket",
+        arguments={"title": "Example incident"},
+        approved=False,
+    )
+    assert result.status == "denied"
+    assert ticket_store.count() == 0
+```
+
+This is illustrative pseudocode, not a test copied from a project. Its important property is the assertion about the side effect: a denial message alone does not prove that a write never occurred.
+
+## 2. Model behavior
+
+A deterministic test cannot establish that a model consistently selects the right tool or grounds an answer in the right passage.
+
+For that, define a scenario set with expected outcomes. Include ordinary requests, missing information, irrelevant retrieved passages, and requests that should be refused. Record the model configuration and inspect failures rather than reporting only an average score.
+
+An evaluation record can remain small:
+
+- What was the input?
+- What outcome was expected?
+- What tools or sources were used?
+- Did the observed result satisfy the criterion?
+- What failed, and what should change?
+
+The point is to make the result repeatable enough to compare changes. A single successful response remains a single observation.
+
+## 3. Operating behavior
+
+Restarting after failure, handling concurrent requests, and recovering from a provider timeout are different questions again. A local in-memory demo does not establish durable recovery.
+
+Before claiming production reliability, collect evidence for the actual deployment and its failure modes. Until then, document the boundary honestly: what runs, what was tested, and what is still unknown.
+
+## A practical project note
+
+For each case study, I use four prompts:
+
+> What is implemented? What was verified? What does that verification establish? What remains unverified?
+
+This keeps the project useful to both its author and a reviewer. Clear limitations also make the next engineering task easier to choose.
+
+## Further reading
+
+The [Agentic AI Demo README](https://github.com/sunshine-engineer/AgenticAI_Demo) illustrates the separation between offline policy checks and live-model evaluation. Its documented production gaps are a useful reminder to keep a learning application’s claims proportionate to its evidence.

@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { published, dateLabel } from '../../lib/content';
+import { href } from '../../config';
+const articles = (await published('articles')).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+---
+
+<Base title="Articles">
+  <section class="page-intro wrap">
+    <p class="eyebrow">FIELD NOTES</p>
+    <h1>
+      Learn it.
+      <br />
+      Build it. Explain it.
+    </h1>
+    <p>
+      Notes on engineering decisions, reliable systems, and learning through
+      implementation.
+    </p>
+  </section>
+  <section class="wrap section">
+    {articles.map((article) => (
+      <a class="article-row" href={href(`articles/${article.id}/`)}>
+        <span class="article-date">{dateLabel(article.data.published)}</span>
+        <div>
+          <h2>{article.data.title}</h2>
+          <p>{article.data.summary}</p>
+          <ul class="tags">
+            {article.data.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </a>
+    ))}
+  </section>
+</Base>

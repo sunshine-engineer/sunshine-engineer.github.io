@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { published } from '../../lib/content';
+const projects = (await published('projects')).sort(
+  (a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999),
+);
+---
+
+<Base title="Projects">
+  <section class="page-intro wrap">
+    <p class="eyebrow">THE WORK / INDEPENDENT PROJECTS</p>
+    <h1>
+      From question
+      <br />
+      to working system.
+    </h1>
+    <p>
+      Practical explorations in applied AI. The decisions, evidence, and
+      limitations behind each build.
+    </p>
+  </section>
+  <section class="wrap section">
+    <div class="project-grid">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </section>
+</Base>

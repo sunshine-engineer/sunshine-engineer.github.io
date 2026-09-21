@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { published, dateLabel } from '../lib/content';
+import { profile, href } from '../config';
+const projects = (await published('projects'))
+  .filter((p) => p.data.featuredOrder)
+  .sort((a, b) => a.data.featuredOrder! - b.data.featuredOrder!);
+const articles = (await published('articles'))
+  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
+  .slice(0, 3);
+---
+
+<Base title="Applied AI & data engineering">
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        <span class="status-dot"></span> DATA ENGINEERING → APPLIED AI
+      </p>
+      <h1>
+        Building systems.
+        <br />
+        Understanding <em>why.</em>
+      </h1>
+      <p class="hero-description">
+        I’m Sunny, a data engineer exploring the practical side of generative
+        AI. I build, test, and document systems that turn ideas into working
+        software.
+      </p>
+      <div class="actions">
+        <a class="button" href={href('projects/')}>
+          Explore my work <span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href={href('about/')}>
+          A little about me →
+        </a>
+      </div>
+      {profile.resume && (
+        <p>
+          <a class="text-link" href={href(profile.resume)} download>
+            Download résumé ↓
+          </a>
+        </p>
+      )}
+      <p class="hero-note">
+        4 years in production data engineering · Independent GenAI projects
+      </p>
+    </div>
+    <aside class="engineering-note" aria-label="Engineering approach">
+      <div class="note-top">
+        <span>THE ENGINEERING NOTEBOOK</span>
+        <span>01 / ∞</span>
+      </div>
+      <div class="note-graphic" aria-hidden="true">
+        <div class="diagram-node">real problem</div>
+        <div class="diagram-line"></div>
+        <div class="diagram-node filled">thoughtful system</div>
+        <div class="diagram-line"></div>
+        <div class="diagram-node">observable result</div>
+      </div>
+      <div class="note-bottom">
+        <span class="status-dot"></span> Build. Validate. Explain. Repeat.
+      </div>
+    </aside>
+  </section>
+  <div class="discipline-strip">
+    <div class="wrap">
+      <span>BUILT ON A FOUNDATION OF</span>
+      <p>
+        Python <i>/</i> SQL <i>/</i> Data pipelines <i>/</i> Applied AI <i>/</i>{' '}
+        Continuous learning
+      </p>
+    </div>
+  </div>
+  <section class="section wrap">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">01 / SELECTED WORK</p>
+        <h2>Ideas, made concrete.</h2>
+      </div>
+      <a class="text-link" href={href('projects/')}>
+        All projects ↗
+      </a>
+    </div>
+    <div class="project-grid">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </section>
+  <section class="section articles-section wrap">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">02 / FIELD NOTES</p>
+        <h2>What I’m learning along the way.</h2>
+      </div>
+      <a class="text-link" href={href('articles/')}>
+        All articles ↗
+      </a>
+    </div>
+    {articles.map((article) => (
+      <a class="article-row" href={href(`articles/${article.id}/`)}>
+        <span class="article-date">{dateLabel(article.data.published)}</span>
+        <div>
+          <h3>{article.data.title}</h3>
+          <p>{article.data.summary}</p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </a>
+    ))}
+  </section>
+  <section class="contact-band wrap">
+    <div>
+      <p class="eyebrow">LET’S BUILD SOMETHING USEFUL</p>
+      <h2>
+        Good work starts with
+        <br />a good conversation.
+      </h2>
+      <p>Interested in my projects or engineering experience?</p>
+    </div>
+    <a class="button" href={href('about/#contact')}>
+      Get in touch ↗
+    </a>
+  </section>
+</Base>

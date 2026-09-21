@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { profile, href } from '../config';
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+const {
+  title,
+  description = profile.description,
+  image = 'social-card.png',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(href(image), Astro.site);
+const nav = [
+  ['Projects', 'projects/'],
+  ['Articles', 'articles/'],
+  ['Videos', 'videos/'],
+  ['About', 'about/'],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Sunny</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={href('favicon.svg')} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Sunny’s articles"
+      href={href('rss.xml')}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} — Sunny`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header wrap">
+      <a class="brand" href={href()} aria-label="Sunny home">
+        <span class="brand-mark">s.</span> sunny
+        <span class="brand-suffix"> / engineer</span>
+      </a>
+      <nav aria-label="Main navigation">
+        {nav.map(([label, path]) => (
+          <a
+            href={href(path)}
+            aria-current={
+              Astro.url.pathname.startsWith(href(path)) ? 'page' : undefined
+            }
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+      <a class="header-contact" href={href('about/#contact')}>
+        Let’s connect <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer wrap">
+      <a class="brand" href={href()}>
+        sunny<span class="brand-suffix"> / engineer</span>
+      </a>
+      <p>Built with care. Documented with evidence.</p>
+      <div>
+        <a href={profile.github}>GitHub ↗</a>
+        <a href={href('rss.xml')}>RSS</a>
+        <a href={href('about/#contact')}>Contact ↗</a>
+      </div>
+    </footer>
+  </body>
+</html>

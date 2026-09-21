@@ -1,0 +1,54 @@
+---
+import { render, getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import { published, dateLabel } from '../../lib/content';
+import { href } from '../../config';
+export async function getStaticPaths() {
+  return (await published('videos')).map((video) => ({
+    params: { id: video.id },
+    props: { video },
+  }));
+}
+const { video } = Astro.props;
+const { Content } = await render(video);
+const project = video.data.project
+  ? await getEntry(video.data.project)
+  : undefined;
+const article = video.data.article
+  ? await getEntry(video.data.article)
+  : undefined;
+---
+
+<Base title={video.data.title} description={video.data.summary}>
+  <header class="detail-header wrap">
+    <a class="eyebrow" href={href('videos/')}>
+      ← ALL VIDEOS
+    </a>
+    <p class="eyebrow" style="margin-top:25px">
+      {dateLabel(video.data.published)}
+    </p>
+    <h1>{video.data.title}</h1>
+    <p class="summary">{video.data.summary}</p>
+  </header>
+  <div class="detail-layout wrap">
+    <article class="prose">
+      <VideoPlayer id={video.data.youtubeId!} title={video.data.title} />
+      <Content />
+      {project && !project.data.draft && (
+        <p>
+          <a href={href(`projects/${project.id}/`)}>
+            Related project: {project.data.title} →
+          </a>
+        </p>
+      )}
+      {article && !article.data.draft && (
+        <p>
+          <a href={href(`articles/${article.id}/`)}>
+            Related article: {article.data.title} →
+          </a>
+        </p>
+      )}
+    </article>
+  </div>
+</Base>
