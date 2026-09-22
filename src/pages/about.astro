@@ -7,7 +7,7 @@ import { profile, href } from '../config';
   <section class="page-intro wrap">
     <p class="eyebrow">THE PERSON BEHIND THE PROJECTS</p>
     <h1>
-      Hi, I’m Sunny.
+      Hi, I’m Sunny Sharma.
       <br />
       <em>Always building.</em>
     </h1>
@@ -17,14 +17,91 @@ import { profile, href } from '../config';
     <div class="prose">
       <h2>A foundation in real systems</h2>
       <p>
-        My professional background is in production data engineering: Python,
-        SQL, Airflow, data pipelines, validation, monitoring, and
-        troubleshooting.
+        At Everlytics Data Science, I progressed from Data Engineering Intern to
+        Data Engineer and Senior Data Engineer. My work covered enterprise
+        warehouse migrations, ETL delivery, orchestration, validation, and
+        production support across engineering, analytics, and business teams.
       </p>
       <p>
-        I’m bringing that engineering discipline into applied generative AI
-        through independent projects. This portfolio captures what I’m building,
-        the tradeoffs I’m making, and the questions I’m still working through.
+        I contributed to a Teradata-to-SingleStore migration spanning more than
+        100 TB and migrated or optimized over 100 Informatica workflows. I later
+        led orchestration and delivery activities for migration of more than 10
+        business-critical modules and 10 TB of historical data to a lakehouse
+        architecture.
+      </p>
+      <h2>Experience</h2>
+      <h3>Senior Data Engineer · Everlytics</h3>
+      <p>November 2025 – May 2026 · Bengaluru</p>
+      <ul>
+        <li>
+          Coordinated Airflow workflows for batch, CDC, and streaming ingestion,
+          including scheduling, dependencies, validation, and operational
+          execution.
+        </li>
+        <li>
+          Supported modernization of Java, Node.js, and shell processing logic
+          into Python workflows.
+        </li>
+        <li>
+          Owned troubleshooting and performance-tuning activities, and
+          coordinated testing, release stabilization, and handover.
+        </li>
+      </ul>
+      <h3>Data Engineer · Everlytics</h3>
+      <p>February 2023 – November 2025 · Bengaluru</p>
+      <ul>
+        <li>
+          Developed, migrated, and optimized Informatica ETL and SQL
+          transformations for the Teradata-to-SingleStore migration.
+        </li>
+        <li>
+          Redesigned more than 30 workflows and supported source-to-target
+          validation, failed-load diagnosis, monitoring, and deployment.
+        </li>
+        <li>
+          Mentored five junior engineers on ETL standards, validation, reviews,
+          and production troubleshooting.
+        </li>
+      </ul>
+      <h3>Data Engineering Intern · Everlytics</h3>
+      <p>July 2022 – January 2023</p>
+      <p>
+        Evaluated SingleStore and MariaDB ColumnStore as Teradata alternatives
+        through replication, ETL migration, and benchmarking with datasets of
+        more than 40 million records.
+      </p>
+      <h2>A pipeline I owned end to end</h2>
+      <p>
+        I built, tested, deployed, and supported an Informatica-scheduled
+        flat-file pipeline into SingleStore. Compressed files of approximately
+        5–10 MB arrived every five minutes, with a processing SLA below five
+        minutes. A shell script unzipped and validated each file before a
+        truncate-and-load landing step. Staging transformations cleaned and
+        prepared the data for dimension and fact loading.
+      </p>
+      <p>
+        The workflow maintained SCD Type 2 history across approximately three to
+        five dimensions. Joins and unique-key combinations identified changed
+        fact records; unchanged records were skipped. Rejected landing/staging
+        records went to Informatica bad-record files, and conditional shell
+        tasks sent success or failure emails. Final tasks archived source files
+        and cleaned the processing directory. Informatica parallel processing
+        supported ingestion performance.
+      </p>
+      <p>
+        This pipeline did not include reconciliation. That is a concrete area I
+        would improve with source/target control totals and completeness checks.
+        In a separate project, I used OpenMetadata for scheduled data-quality
+        checks.
+      </p>
+      <h2>Independent GenAI development</h2>
+      <p>
+        Since June 2026, I have focused on independent applications for document
+        question answering, tool-using agents, and natural-language SQL. My work
+        combines Python, FastAPI, LangChain, LangGraph, vector retrieval,
+        Docker, testing, and trace-based debugging. The{' '}
+        <a href={href('projects/')}>project case studies</a> explain the
+        implementation, evidence, and remaining work.
       </p>
       <h2>How I approach the work</h2>
       <p>
@@ -36,20 +113,32 @@ import { profile, href } from '../config';
         The GenAI work here represents independent portfolio development, rather
         than commercial production GenAI experience.
       </p>
+      <h2>Education</h2>
+      <p>M.Tech. in Biotechnology · UIET, Kurukshetra University · 2019–2021</p>
+      <p>
+        B.Tech. in Biotechnology · Maharshi Dayanand University, Rohtak ·
+        2014–2018
+      </p>
     </div>
     <aside class="about-aside">
       <p class="eyebrow">MY TOOLBOX</p>
       <h3>Production foundations</h3>
       <p>
-        Python · SQL · Airflow
+        Python · SQL · Airflow · Informatica
         <br />
-        ETL · Validation · Monitoring
+        SingleStore · Teradata · PostgreSQL · ETL · Validation · Monitoring
       </p>
-      <h3>Independent explorations</h3>
+      <h3>Applied AI projects</h3>
       <p>
-        RAG · Tool-calling agents
+        LangChain · LangGraph · RAG · Tool calling
         <br />
-        Retrieval · Evaluation · Documentation
+        FastAPI · FAISS · pgvector · Docker · Pytest · GitHub Actions
+      </p>
+      <h3>Roles I’m pursuing</h3>
+      <p>Python + GenAI Engineer · Applied AI Engineer · AI Data Engineer</p>
+      <p>
+        Full-time roles in Delhi NCR, including Noida and Gurugram. Open to
+        remote short-term project collaboration.
       </p>
     </aside>
   </section>
@@ -61,7 +150,10 @@ import { profile, href } from '../config';
         <br />
         Explore possibilities.
       </h2>
-      <p>Find my work and professional links below.</p>
+      <p>
+        Email me for my latest resume, a project walkthrough, or a conversation
+        about your team’s engineering needs.
+      </p>
     </div>
     <div class="contact-links">
       <a class="button" href={profile.github}>

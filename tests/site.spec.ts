@@ -5,7 +5,7 @@ import { join } from 'node:path';
 test('homepage, navigation, contact and keyboard access', async ({ page }) => {
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Building systems.',
+    'Reliable data.',
   );
   await page.keyboard.press('Tab');
   await expect(
@@ -38,6 +38,8 @@ test('published routes, metadata, images and mobile layout', async ({
     'projects/',
     'projects/autodocs/',
     'projects/agentic-demo/',
+    'projects/document-qa/',
+    'projects/ai-sql-assistant/',
     'articles/',
     'articles/evidence-before-confidence/',
     'videos/',

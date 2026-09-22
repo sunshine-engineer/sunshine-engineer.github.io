@@ -26,7 +26,7 @@ const nav = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} — Sunny</title>
+    <title>{title} — {profile.name}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={href('favicon.svg')} />
@@ -37,7 +37,7 @@ const nav = [
       href={href('rss.xml')}
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} — Sunny`} />
+    <meta property="og:title" content={`${title} — ${profile.name}`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
