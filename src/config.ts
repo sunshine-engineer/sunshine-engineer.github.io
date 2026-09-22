@@ -1,8 +1,8 @@
 export const profile = {
-  name: 'Sunny',
-  title: 'Data engineering foundations. Applied AI curiosity.',
+  name: 'Sunny Sharma',
+  title: 'Applied GenAI & Data Engineer',
   description:
-    'Four years in production data engineering. Now building and studying practical generative AI systems, with an emphasis on evidence, reliability, and clear technical decisions.',
+    'Sunny Sharma — Applied GenAI & Data Engineer. Approximately four years in enterprise data engineering, with independent projects in RAG, Python APIs, tool-using agents, and natural-language SQL. Based in Delhi NCR.',
   github: 'https://github.com/sunshine-engineer',
   email: 'sunny_sharma2022@outlook.com',
   linkedin: 'https://www.linkedin.com/in/sunny-sharma2022',

@@ -1,11 +1,11 @@
 ---
 title: AutoDocsGenAI
-summary: A source-grounded documentation pipeline that turns official Python documentation into structured, traceable learning material.
+summary: An in-progress pipeline for ingesting official Python documentation, preserving source lineage, and building embedding-based retrieval.
 tags: [Python, Documentation, Data pipelines]
 draft: false
 repository: https://github.com/sunshine-engineer/AutoDocsGenAI
 status: In progress
-featuredOrder: 1
+featuredOrder: 3
 cover: images/autodocs.svg
 ---
 
@@ -26,7 +26,10 @@ package + version
   → structure-aware chunks
 ```
 
-Retrieval, generation, validation, review, and export belong to the broader roadmap. They should be assessed individually rather than inferred from the ingestion path.
+The repository also documents PostgreSQL lineage persistence, repeatable imports,
+embedding/indexing commands, and package-version search with a lightweight
+identifier-aware reranker. Generation, validation, human review, and export remain
+development work; ingestion success does not establish their completion.
 
 ## My contribution
 
@@ -51,6 +54,8 @@ This case study was prepared from that README on September 21, 2026. The project
 
 ## Limitations and next steps
 
-The README contains an older status table alongside later indexing and search instructions. Those sections do not establish a single verified completion state for the entire pipeline. This page therefore limits its implementation summary to the documented ingestion path.
+The README contains an older status table alongside later indexing and search
+instructions. The ingestion path and documented retrieval commands are described
+here separately; no complete documentation-generation workflow is claimed.
 
 The next useful evidence is a reproducible end-to-end run with a pinned source version, inspected artifacts, retrieval evaluation, and citation checks. Generated-document quality and commercial operating reliability remain separate questions.

@@ -15,24 +15,27 @@ const articles = (await published('articles'))
   <section class="hero wrap">
     <div class="hero-copy">
       <p class="eyebrow">
-        <span class="status-dot"></span> DATA ENGINEERING → APPLIED AI
+        <span class="status-dot"></span> SUNNY SHARMA / APPLIED GENAI & DATA
+        ENGINEER
       </p>
       <h1>
-        Building systems.
+        Reliable data.
         <br />
-        Understanding <em>why.</em>
+        Practical <em>AI.</em>
       </h1>
       <p class="hero-description">
-        I’m Sunny, a data engineer exploring the practical side of generative
-        AI. I build, test, and document systems that turn ideas into working
-        software.
+        I build Python applications that connect documents, databases, and
+        tool-using agents. My foundation is approximately four years in
+        enterprise data engineering: migrations, pipelines, SQL optimization,
+        and production support. Today, I apply that experience to independent
+        GenAI projects.
       </p>
       <div class="actions">
         <a class="button" href={href('projects/')}>
           Explore my work <span aria-hidden="true">↗</span>
         </a>
         <a class="text-link" href={href('about/')}>
-          A little about me →
+          Experience & contact →
         </a>
       </div>
       {profile.resume && (
@@ -43,7 +46,7 @@ const articles = (await published('articles'))
         </p>
       )}
       <p class="hero-note">
-        4 years in production data engineering · Independent GenAI projects
+        Open to Python + GenAI and AI Data Engineering roles · Delhi NCR
       </p>
     </div>
     <aside class="engineering-note" aria-label="Engineering approach">
@@ -76,12 +79,17 @@ const articles = (await published('articles'))
     <div class="section-heading">
       <div>
         <p class="eyebrow">01 / SELECTED WORK</p>
-        <h2>Ideas, made concrete.</h2>
+        <h2>Retrieval, agents, and data access.</h2>
       </div>
       <a class="text-link" href={href('projects/')}>
         All projects ↗
       </a>
     </div>
+    <p class="hero-description">
+      Start with Document QA for RAG, Agentic AI Demo for tool orchestration, or
+      AutoDocsGenAI for data architecture. Each case study links to code and
+      explains what has been implemented and tested.
+    </p>
     <div class="project-grid">
       {projects.map((project, index) => (
         <ProjectCard project={project} index={index} />
@@ -116,7 +124,11 @@ const articles = (await published('articles'))
         Good work starts with
         <br />a good conversation.
       </h2>
-      <p>Interested in my projects or engineering experience?</p>
+      <p>
+        Hiring for Python, applied GenAI, or AI data engineering in Delhi NCR?
+        I’m available to discuss my production experience and walk through the
+        code.
+      </p>
     </div>
     <a class="button" href={href('about/#contact')}>
       Get in touch ↗
