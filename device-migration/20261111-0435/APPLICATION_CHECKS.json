@@ -1,0 +1,13 @@
+{
+  "type_check": {
+    "files": 22,
+    "errors": 0,
+    "warnings": 0,
+    "hints": 0
+  },
+  "static_build": {
+    "passed": true,
+    "pages": 9
+  },
+  "build_warning": "Vite module-level directive warning for evidence-before-confidence.mdx; build exits successfully. Copied dependencies were used; run npm ci on target for its OS."
+}
