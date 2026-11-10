@@ -1,0 +1,51 @@
+{
+  "repo": "sunshine-engineer/sunshine-engineer.github.io",
+  "visibility": "PUBLIC",
+  "backup_branch": "backup/device-migration-20261111-0435",
+  "sources": [
+    {
+      "label": "portfolio",
+      "source": "D:\\projects\\portfolio_website",
+      "head": "3ab4acaedf10d6a95e541bd72df4779771c6fee7",
+      "refs": [
+        {
+          "ref": "refs/codex/turn-diffs/checkpoints/f7c7f3616c52dccec5bab00a34d71cda/c65d75ddd5f3fdb1ddb513d79d4ce35e/1789981345514/2249182c-14ac-460e-87a7-0b83461bebab",
+          "sha": "aa4797c4a43f2a900e0bdc8ea570226023791ef9"
+        },
+        {
+          "ref": "refs/heads/main",
+          "sha": "3ab4acaedf10d6a95e541bd72df4779771c6fee7"
+        },
+        {
+          "ref": "refs/remotes/origin/main",
+          "sha": "3ab4acaedf10d6a95e541bd72df4779771c6fee7"
+        }
+      ],
+      "history_scan": {
+        "blob_objects_scanned": 49,
+        "credential_findings": [],
+        "public_history_clear": true
+      },
+      "manifest": "portfolio.manifest.json",
+      "archive": "portfolio.zip",
+      "counts": {
+        "file": 13748,
+        "directory": 1575,
+        "link": 0
+      },
+      "redactions": []
+    }
+  ],
+  "ref_mappings": [
+    {
+      "source": "portfolio",
+      "source_ref": "refs/heads/main",
+      "sha": "3ab4acaedf10d6a95e541bd72df4779771c6fee7",
+      "mirror_ref": "refs/backup-local/portfolio/heads/main",
+      "remote_ref": "refs/heads/backup/local-20261111-0435/portfolio/main"
+    }
+  ],
+  "mirror": "D:\\project-backups\\device-migration-20261111-0435\\sunshine-engineer.github.io\\history.git",
+  "all_source_paths_included": true,
+  "sensitive_policy": "dummy substitutions recorded per file; no paths omitted"
+}
