@@ -1,0 +1,27 @@
+{
+  "repository": "sunshine-engineer/sunshine-engineer.github.io",
+  "branch": "backup/device-migration-20261111-0435",
+  "release": "device-backup-20261111-0435",
+  "verified_at_utc": "2026-11-10T23:26:59Z",
+  "all_assets_downloaded_and_hash_verified": true,
+  "all_downloaded_archives_restored_and_file_hashes_verified": true,
+  "source_unchanged_since_capture": true,
+  "local_branch_mappings_verified": 1,
+  "snapshots": [
+    {
+      "source": "portfolio",
+      "restored_counts": {
+        "file": 13748,
+        "directory": 1575,
+        "link": 0
+      },
+      "all_restored_file_hashes_verified": true,
+      "git_fsck_passed": true,
+      "redacted_files": 0
+    }
+  ],
+  "workspace_backup_verified": true,
+  "application_acceptance_on_new_device_pending": true,
+  "originals_deleted": false,
+  "safe_to_delete_entire_device": false
+}
